@@ -1,0 +1,112 @@
+{
+    "title": "Spill The Data - Whispers & Receipts",
+    "version": "2.4",
+    "settings": {
+      "pagenumber": 0,
+      "editable": true,
+      "fullscreenEnabled": false,
+      "parameters": {},
+      "theme": "dark",
+      "downloadImageEnabled": true,
+      "resizing": "all"
+    },
+    "pages": [
+      {
+        "title": "Main Page",
+        "reports": [
+          {
+            "id": "72322cab-d792-4c45-95c3-e9fa74ea29ec",
+            "title": "The Full Alleged Network",
+            "query": "MATCH (n)-[e]->(m)\nWHERE NOT ((n:Celebrity) AND toLower(n.name) = 'kalathma')\n  AND NOT ((m:Celebrity) AND toLower(m.name) = 'kalathma')\nRETURN n, e, m \nLIMIT 10000\n",
+            "width": 20,
+            "height": 6,
+            "x": 0,
+            "y": 0,
+            "type": "graph",
+            "selection": {
+              "Celebrity": "name",
+              "RELATIONSHIP": "(label)"
+            },
+            "settings": {
+              "fullscreenEnabled": true,
+              "refreshButtonEnabled": true,
+              "showPropertiesOnHover": true,
+              "allowDownload": true,
+              "rightClickToExpandNodes": true
+            },
+            "schema": [
+              [
+                "Celebrity",
+                "name"
+              ],
+              [
+                "RELATIONSHIP",
+                "relationship_type",
+                "relationship_description"
+              ]
+            ]
+          },
+          {
+            "id": "2b46b6dd-4e6b-46da-bcf2-0b50ccada72d",
+            "title": "Most Popular Chart - Top 25",
+            "query": "MATCH (c:Celebrity)-[r:RELATIONSHIP]-()\nWHERE toLower(c.name) <> 'kalathma'\nWITH trim(\n  reduce(s = \"\", w IN split(toLower(c.name), \" \") |\n    s + \" \" + toUpper(substring(w, 0, 1)) + substring(w, 1)\n  )\n) AS Celebrity, count(r) AS Frequency\nRETURN Celebrity, Frequency\nORDER BY Frequency DESC\nLIMIT 25\n",
+            "width": 19,
+            "height": 7,
+            "x": 0,
+            "y": 6,
+            "type": "bar",
+            "selection": {
+              "index": "Celebrity",
+              "value": "Frequency",
+              "key": "(none)"
+            },
+            "settings": {
+              "legend": true,
+              "marginBottom": 130
+            },
+            "schema": []
+          },
+          {
+            "id": "b51985e2-3f84-4e13-94bd-41d60d6a20ff",
+            "title": "Category Distribtuion",
+            "query": "MATCH ()-[r:RELATIONSHIP]->()\nRETURN r.relationship_type AS RelationshipType, count(*) AS Count\nORDER BY Count DESC\n\n\n\n",
+            "width": 13,
+            "height": 4,
+            "x": 4,
+            "y": 13,
+            "type": "pie",
+            "selection": {
+              "index": "RelationshipType",
+              "value": "Count",
+              "key": "(none)"
+            },
+            "settings": {
+              "fullscreenEnabled": true,
+              "enableArcLinkLabels": true,
+              "downloadImageEnabled": true,
+              "marginLeft": 50,
+              "marginTop": 50,
+              "sortByValue": true,
+              "legend": false,
+              "arcLabelsSkipAngle": 25
+            },
+            "schema": []
+          }
+        ]
+      }
+    ],
+    "parameters": {},
+    "extensions": {
+      "active": true,
+      "activeReducers": [
+        "DASHBOARD/EXTENSIONS/QUERY_TRANSLATOR/"
+      ],
+      "advanced-charts": {
+        "active": true
+      },
+      "query-translator": {
+        "active": true
+      }
+    },
+    "uuid": "fd5021ba-7f36-47f1-8d5d-ae0f2e38dee1"
+  }
