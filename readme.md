@@ -1,7 +1,6 @@
 # Spill The Data – Whispers & Receipts
 
-**Knowledge Graph Experiment  
-_For Educational Purposes Only_**
+**_For Educational Purposes Only_**
 
 Welcome to *Spill The Data – Whispers & Receipts*, an academic exploration that transforms a corpus of over 11,000+ viral TikTok comments into an exquisitely detailed knowledge graph. This project models the alleged intricate, scandalous, and humorous interactions between celebrities and influencers using Neo4j and Cypher queries. All content is intended solely for educational purposes.
 
@@ -11,9 +10,7 @@ Welcome to *Spill The Data – Whispers & Receipts*, an academic exploration tha
 
 For walkthrough of a preliminary analysis, watch the video below:
 
-<video src="Neo Dash Analysis.mp4" controls width="640">
-Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/df4cab8f-5fef-4188-a12c-f5341c86adac
 
 ---
 
